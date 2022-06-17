@@ -1,8 +1,9 @@
 package com.casi_td4.modele;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 
-public class Compte {
+public class Compte implements BasicEntity {
     private int cle;
     private String numCompte;
     private float solde;
@@ -45,5 +46,17 @@ public class Compte {
 
     public void addOperation(String intitule, String date, float montant) {
         this.operations.add(new Operation(0, intitule, montant, date, this.cle));
+        this.solde += montant;
+        System.out.println("Le solde est de : " + String.valueOf(this.solde));
+    }
+
+    public void addOperation(Operation op) {
+        this.operations.add(op);
+        this.solde += op.getMontant();
+    }
+
+    @Override
+    public String toString() {
+        return this.getNumCompte();
     }
 }

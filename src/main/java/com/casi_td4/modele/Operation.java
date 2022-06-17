@@ -1,6 +1,6 @@
 package com.casi_td4.modele;
 
-public class Operation {
+public class Operation implements BasicEntity {
     private int cle;
     private String intitule;
     private float montant;
@@ -55,4 +55,9 @@ public class Operation {
         this.montant = montant;
     }
 
+    @Override
+    public String toString() {
+        String format = "%s du %s : %s €";
+        return String.format(format, this.intitule, this.dateOperation, this.montant);
+    }
 }

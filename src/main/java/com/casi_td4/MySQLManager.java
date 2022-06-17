@@ -14,7 +14,7 @@ public class MySQLManager {
 		connexion();
 	}
 
-	public static MySQLManager getInstance() {
+	public static synchronized MySQLManager getInstance() {
 		if (instance == null) {
 			instance = new MySQLManager();
 		}
@@ -23,7 +23,8 @@ public class MySQLManager {
 
 	private void connexion() {
 		try {
-			conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/banque?serverTimezone=UTC", "root", "");
+			conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/casi_banque?serverTimezone=UTC", "root",
+					"p@ssw0rd");
 		} catch (SQLException ex) {
 			System.out.println("SQLException: " + ex.getMessage());
 			System.out.println("SQLState: " + ex.getSQLState());
